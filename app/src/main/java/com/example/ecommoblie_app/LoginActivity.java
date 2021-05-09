@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class LoginActivity extends AppCompatActivity {
     Button btn_login, bt_redirect_logout, btn_login_admin;
     EditText userName_login, password_login;
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             data.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.child(parentDbName).child(userName).child(String.valueOf(role_id)).exists()) {
+                    if (snapshot.child(parentDbName).child(userName).exists()) {
                         Users dataUsers = snapshot.child(parentDbName).child(userName).getValue(Users.class);
                         if (dataUsers.getUserName().contains(userName)) {
                             if (dataUsers.getPassword().contains(password)) {
@@ -91,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bạt:" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bạt:", Toast.LENGTH_SHORT).show();
                     }
                 }
 
