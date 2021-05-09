@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
     }
-
     public void init() {
         listView = findViewById(R.id.listview);
         ArrayList<Products> list = new ArrayList<>();
@@ -51,5 +50,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
