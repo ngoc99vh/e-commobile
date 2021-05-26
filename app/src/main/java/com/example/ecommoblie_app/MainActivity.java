@@ -3,9 +3,12 @@ package com.example.ecommoblie_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -26,12 +29,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        Button btn_post = findViewById(R.id.btn_post);
+        btn_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Post.class));
+            }
+        });
     }
     public void init() {
+
+        String userName = getIntent().getStringExtra("userName");
         listView = findViewById(R.id.listview);
         ArrayList<Products> list = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products");
-        databaseReference.orderByChild("Role").equalTo("anhcho123").addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("Role").equalTo(userName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
@@ -50,4 +62,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

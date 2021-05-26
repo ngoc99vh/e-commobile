@@ -86,7 +86,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (dataUsers.getUserName().contains(userName)) {
                             if (dataUsers.getPassword().contains(password)) {
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công !!!!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                Intent intent= new Intent(getApplicationContext(), MainActivity.class);
+                                intent.putExtra("userName", userName);
+                                startActivity(intent);
                             }
 
                         }

@@ -95,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this, "Thành công", Toast.LENGTH_SHORT).show();
+
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             }else {
                                 Toast.makeText(RegisterActivity.this, "Kết nối thất bại", Toast.LENGTH_SHORT).show();
