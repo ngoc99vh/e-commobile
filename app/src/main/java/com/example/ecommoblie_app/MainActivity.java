@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.ecommoblie_app.Model.Products;
@@ -23,6 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +32,16 @@ public class MainActivity extends AppCompatActivity {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Post.class));
+                Intent intent= new Intent(getApplicationContext(), PostActivity.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
             }
         });
     }
     public void init() {
 
-        String userName = getIntent().getStringExtra("userName");
+         userName = getIntent().getStringExtra("userName");
+
         listView = findViewById(R.id.listview);
         ArrayList<Products> list = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Products");
@@ -62,5 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
