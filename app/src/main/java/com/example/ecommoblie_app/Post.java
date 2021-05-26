@@ -24,7 +24,8 @@ public class Post extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         init();
     }
-    public void init(){
+
+    public void init() {
         btn_choose = findViewById(R.id.btn_choose_file);
         btn_upload = findViewById(R.id.btn_upload_file);
         edt_fileName = findViewById(R.id.edt_file_name);
@@ -45,20 +46,19 @@ public class Post extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data !=null && data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imgUri = data.getData();
 
         }
     }
 
-    public void openFilechoose(){
+    public void openFilechoose() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
-
 
 
     }
@@ -78,6 +78,3 @@ public class Post extends AppCompatActivity {
 
 
 
-
-
-\
